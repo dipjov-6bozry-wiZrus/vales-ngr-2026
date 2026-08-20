@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vales Corporativos NGR 2026</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap');
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bembos:       #0055A5;
+    --bembos-light: #E8F1FB;
+    --bembos-mid:   #C2D8F5;
+    --chinawok:     #C8000A;
+    --chinawok-light:#FDECEA;
+    --chinawok-mid: #F5BFBC;
+    --papajohns:    #006B3F;
+    --papajohns-light:#E6F4EE;
+    --papajohns-mid:#A8D9BF;
+    --donbelisario: #7B2D00;
+    --donbelisario-light:#F9EDE6;
+    --donbelisario-mid:#E8BBA0;
+    --popeyes:      #F47920;
+    --popeyes-light:#FEF3E8;
+    --popeyes-mid:  #FAD0A0;
+    --dunkin:       #E8006D;
+    --dunkin-light: #FDEAF4;
+    --dunkin-mid:   #F5AACF;
+
+    --black: #0f0f0f;
+    --white: #ffffff;
+    --gray-50: #f8f8f6;
+    --gray-100: #f0efec;
+    --gray-200: #e2e1dc;
+    --gray-400: #a09f99;
+    --gray-600: #6b6a65;
+    --gray-800: #2c2b28;
+  }
+
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', sans-serif; background: var(--gray-50); color: var(--black); line-height: 1.6; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--gray-200);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 58px; gap: 1rem;
+  }
+  .nav-logo { font-size: 15px; font-weight: 800; letter-spacing: -0.03em; white-space: nowrap; }
+  .nav-logo span { color: var(--gray-400); font-weight: 400; }
+  .nav-logo small { display: block; font-size: 9px; font-weight: 400; color: var(--gray-400); letter-spacing: 0; margin-top: -2px; }
+  .nav-brands { display: flex; gap: 5px; overflow-x: auto; }
+  .nav-brands::-webkit-scrollbar { display: none; }
+  .nav-chip {
+    font-size: 11px; font-weight: 600; padding: 5px 11px;
+    border-radius: 100px; border: 1.5px solid transparent;
+    text-decoration: none; transition: all 0.15s; white-space: nowrap;
+  }
+  .chip-bembos       { background: var(--bembos-light);       color: var(--bembos);       border-color: var(--bembos-mid); }
+  .chip-chinawok     { background: var(--chinawok-light);     color: var(--chinawok);     border-color: var(--chinawok-mid); }
+  .chip-papajohns    { background: var(--papajohns-light);    color: var(--papajohns);    border-color: var(--papajohns-mid); }
+  .chip-donbelisario { background: var(--donbelisario-light); color: var(--donbelisario); border-color: var(--donbelisario-mid); }
+  .chip-popeyes      { background: var(--popeyes-light);      color: var(--popeyes);      border-color: var(--popeyes-mid); }
+  .chip-dunkin       { background: var(--dunkin-light);       color: var(--dunkin);       border-color: var(--dunkin-mid); }
+  .nav-chip:hover { filter: brightness(0.93); }
+  .nav-cta {
+    font-size: 12px; font-weight: 700; padding: 7px 16px;
+    border-radius: 100px; background: var(--black); color: var(--white);
+    text-decoration: none; white-space: nowrap; transition: opacity 0.15s;
+  }
+  .nav-cta:hover { opacity: 0.8; }
+
+  /* HERO */
+  .hero {
+    padding: 5rem 2rem 3.5rem;
+    text-align: center; max-width: 700px; margin: 0 auto;
+  }
+  .hero-eyebrow {
+    display: inline-block; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-600);
+    border: 1px solid var(--gray-200); border-radius: 100px;
+    padding: 4px 14px; margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.4rem, 6vw, 3.8rem);
+    font-weight: 900; line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 1.25rem;
+  }
+  .hero h1 em { font-style: normal; color: var(--gray-400); }
+  .hero p { font-size: 1rem; color: var(--gray-600); max-width: 500px; margin: 0 auto 2rem; line-height: 1.75; }
+
+  /* BRAND PILLS IN HERO */
+  .hero-brands {
+    display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-bottom: 2.5rem;
+  }
+  .hero-brand-pill {
+    font-size: 12px; font-weight: 700; padding: 6px 14px;
+    border-radius: 100px; letter-spacing: 0.02em;
+  }
+
+  .hero-stats {
+    display: flex; justify-content: center; gap: 3rem;
+    padding: 1.5rem 0; border-top: 1px solid var(--gray-200);
+  }
+
+  .hero-usos { margin-bottom: 1.5rem; }
+  .hero-usos-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 8px; }
+  .hero-usos-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+  .uso-chip { font-size: 12px; color: var(--gray-800); background: var(--white); border: 1px solid var(--gray-200); border-radius: 100px; padding: 5px 12px; }
+  .hero-stat-num { font-size: 1.7rem; font-weight: 900; letter-spacing: -0.04em; }
+  .hero-stat-label { font-size: 11px; color: var(--gray-600); margin-top: 1px; }
+
+  /* BRAND SECTIONS */
+  .brands-wrapper { max-width: 1120px; margin: 0 auto; padding: 0 1.5rem 4rem; }
+
+  .brand-section {
+    margin-bottom: 2.5rem;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1.5px solid transparent;
+  }
+
+  /* per-brand colors */
+  .bs-bembos       { border-color: var(--bembos-mid);       background: var(--bembos-light); }
+  .bs-chinawok     { border-color: var(--chinawok-mid);     background: var(--chinawok-light); }
+  .bs-papajohns    { border-color: var(--papajohns-mid);    background: var(--papajohns-light); }
+  .bs-donbelisario { border-color: var(--donbelisario-mid); background: var(--donbelisario-light); }
+  .bs-popeyes      { border-color: var(--popeyes-mid);      background: var(--popeyes-light); }
+  .bs-dunkin       { border-color: var(--dunkin-mid);       background: var(--dunkin-light); }
+
+  .brand-header {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1.5rem 2rem;
+  }
+  .brand-accent-bar { width: 6px; height: 52px; border-radius: 100px; flex-shrink: 0; }
+  .brand-info { flex: 1; }
+  .brand-name { font-size: 1.3rem; font-weight: 900; letter-spacing: -0.03em; }
+  .brand-category { font-size: 12px; margin-top: 2px; }
+  .brand-range {
+    font-size: 13px; font-weight: 700;
+    padding: 5px 16px; border-radius: 100px;
+    border: 1.5px solid transparent;
+    white-space: nowrap;
+  }
+
+  /* header text/range colors per brand */
+  .bh-bembos .brand-name       { color: var(--bembos); }
+  .bh-bembos .brand-category   { color: #3374bb; }
+  .bh-bembos .brand-range      { color: var(--bembos); background: var(--bembos-mid); border-color: var(--bembos); }
+  .bh-chinawok .brand-name     { color: var(--chinawok); }
+  .bh-chinawok .brand-category { color: #c84040; }
+  .bh-chinawok .brand-range    { color: var(--chinawok); background: var(--chinawok-mid); border-color: var(--chinawok); }
+  .bh-papajohns .brand-name    { color: var(--papajohns); }
+  .bh-papajohns .brand-category{ color: #2a7a50; }
+  .bh-papajohns .brand-range   { color: var(--papajohns); background: var(--papajohns-mid); border-color: var(--papajohns); }
+  .bh-donbelisario .brand-name    { color: var(--donbelisario); }
+  .bh-donbelisario .brand-category{ color: #9b4a20; }
+  .bh-donbelisario .brand-range   { color: var(--donbelisario); background: var(--donbelisario-mid); border-color: var(--donbelisario); }
+  .bh-popeyes .brand-name      { color: #c05c00; }
+  .bh-popeyes .brand-category  { color: #c07030; }
+  .bh-popeyes .brand-range     { color: #c05c00; background: var(--popeyes-mid); border-color: var(--popeyes); }
+  .bh-dunkin .brand-name       { color: var(--dunkin); }
+  .bh-dunkin .brand-category   { color: #c0006b; }
+  .bh-dunkin .brand-range      { color: var(--dunkin); background: var(--dunkin-mid); border-color: var(--dunkin); }
+
+  /* VALES GRID */
+  .vales-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1px; background: rgba(0,0,0,0.06);
+  }
+  .vale-card {
+    background: var(--white);
+    padding: 1.25rem 1.5rem;
+    display: flex; flex-direction: column; gap: 5px;
+    transition: background 0.12s;
+  }
+  .vale-card:hover { background: #fafaf8; }
+  .vale-num { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; }
+  .vale-desc { font-size: 13px; font-weight: 700; color: var(--black); line-height: 1.35; }
+  .vale-detail { font-size: 11px; color: var(--gray-600); line-height: 1.55; flex: 1; }
+  .vale-price { font-size: 1.35rem; font-weight: 900; letter-spacing: -0.03em; margin-top: 6px; }
+  .vale-regular { font-size: 11px; color: var(--gray-400); text-decoration: line-through; }
+
+  /* vale num colors per brand */
+  .vn-bembos       { color: var(--bembos); }
+  .vn-chinawok     { color: var(--chinawok); }
+  .vn-papajohns    { color: var(--papajohns); }
+  .vn-donbelisario { color: var(--donbelisario); }
+  .vn-popeyes      { color: #c05c00; }
+  .vn-dunkin       { color: var(--dunkin); }
+
+  /* PROCESO */
+  .process-section { max-width: 1120px; margin: 0 auto 4rem; padding: 0 1.5rem; }
+  .section-header { text-align: center; margin-bottom: 2rem; }
+  .section-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray-600); margin-bottom: 0.5rem; }
+  .section-title { font-size: 1.7rem; font-weight: 900; letter-spacing: -0.04em; }
+
+  .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+  .step-card {
+    background: var(--white); border: 1px solid var(--gray-200);
+    border-radius: 16px; padding: 1.5rem 1.25rem;
+  }
+  .step-n { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: var(--gray-400); margin-bottom: 0.75rem; }
+  .step-title { font-size: 14px; font-weight: 800; margin-bottom: 5px; }
+  .step-desc { font-size: 12px; color: var(--gray-600); line-height: 1.65; }
+
+  /* INFO STRIP */
+  .info-strip { background: var(--white); border-top: 1px solid var(--gray-200); border-bottom: 1px solid var(--gray-200); padding: 2rem 1.5rem; margin-bottom: 4rem; }
+  .info-inner { max-width: 1120px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
+  .info-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray-400); margin-bottom: 4px; }
+  .info-val { font-size: 13px; color: var(--gray-800); line-height: 1.55; }
+
+  /* CTA */
+  .cta-section { max-width: 640px; margin: 0 auto 4rem; padding: 0 1.5rem; text-align: center; }
+  .cta-box {
+    border-radius: 20px; padding: 3rem 2.5rem;
+    background: linear-gradient(135deg, #0f0f0f 0%, #1a1a2e 100%);
+    color: var(--white);
+  }
+  .cta-box h2 { font-size: 2rem; font-weight: 900; letter-spacing: -0.04em; margin-bottom: 0.75rem; }
+  .cta-box p { font-size: 14px; color: rgba(255,255,255,0.6); margin-bottom: 2rem; line-height: 1.7; }
+  .cta-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { display: inline-block; padding: 12px 24px; background: var(--white); color: var(--black); font-size: 13px; font-weight: 800; border-radius: 100px; text-decoration: none; transition: opacity 0.15s; }
+  .btn-primary:hover { opacity: 0.9; }
+  .btn-secondary { display: inline-block; padding: 12px 24px; background: transparent; color: var(--white); font-size: 13px; font-weight: 600; border-radius: 100px; border: 1px solid rgba(255,255,255,0.3); text-decoration: none; transition: border-color 0.15s; }
+  .btn-secondary:hover { border-color: rgba(255,255,255,0.7); }
+
+  /* FOOTER */
+  .footer-wrap { border-top: 1px solid var(--gray-200); padding: 1.5rem 2rem; }
+  footer { max-width: 1120px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; }
+  footer p { font-size: 11px; color: var(--gray-400); }
+
+  /* DIVIDER */
+  .section-divider { height: 1px; background: var(--gray-200); max-width: 1120px; margin: 0 auto 3.5rem; }
+
+  @media (max-width: 860px) {
+    .nav-brands { display: none; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .info-inner { grid-template-columns: 1fr 1fr; }
+    .banks-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 540px) {
+    .hero { padding: 3rem 1rem 2rem; }
+    .hero-stats { gap: 1.5rem; }
+    .steps-grid { grid-template-columns: 1fr; }
+    .info-inner { grid-template-columns: 1fr; }
+    .brand-header { padding: 1.25rem; flex-wrap: wrap; }
+    footer { flex-direction: column; gap: 6px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">NGR <span>Vales Corporativos</span><small>Grupo de Restaurantes · Presencia nacional</small></div>
+  <div class="nav-brands">
+    <a href="#bembos"       class="nav-chip chip-bembos">Bembos</a>
+    <a href="#chinawok"     class="nav-chip chip-chinawok">China Wok</a>
+    <a href="#papajohns"    class="nav-chip chip-papajohns">Papa John's</a>
+    <a href="#donbelisario" class="nav-chip chip-donbelisario">Don Belisario</a>
+    <a href="#popeyes"      class="nav-chip chip-popeyes">Popeyes</a>
+    <a href="#dunkin"       class="nav-chip chip-dunkin">Dunkin'</a>
+  </div>
+  <a href="#contacto" class="nav-cta">Solicitar cotización</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <span class="hero-eyebrow">Vales Corporativos 2026</span>
+  <h1>6 marcas.<br><em>Un solo proveedor.</em></h1>
+  <p>Beneficios gastronómicos para tu empresa. Desde un desayuno en Dunkin' hasta un pollo familiar en Don Belisario — con atención personalizada y cobertura nacional.</p>
+  <div class="hero-brands">
+    <span class="hero-brand-pill" style="background:var(--bembos-light);color:var(--bembos);border:1.5px solid var(--bembos-mid)">Bembos</span>
+    <span class="hero-brand-pill" style="background:var(--chinawok-light);color:var(--chinawok);border:1.5px solid var(--chinawok-mid)">China Wok</span>
+    <span class="hero-brand-pill" style="background:var(--papajohns-light);color:var(--papajohns);border:1.5px solid var(--papajohns-mid)">Papa John's</span>
+    <span class="hero-brand-pill" style="background:var(--donbelisario-light);color:var(--donbelisario);border:1.5px solid var(--donbelisario-mid)">Don Belisario</span>
+    <span class="hero-brand-pill" style="background:var(--popeyes-light);color:#c05c00;border:1.5px solid var(--popeyes-mid)">Popeyes</span>
+    <span class="hero-brand-pill" style="background:var(--dunkin-light);color:var(--dunkin);border:1.5px solid var(--dunkin-mid)">Dunkin'</span>
+  </div>
+  <div class="hero-usos">
+    <p class="hero-usos-label">Ideal para</p>
+    <div class="hero-usos-chips">
+      <span class="uso-chip">🎂 Cumpleaños</span>
+      <span class="uso-chip">🏆 Reconocimientos</span>
+      <span class="uso-chip">🎄 Canasta navideña</span>
+      <span class="uso-chip">📅 Beneficios mensuales</span>
+      <span class="uso-chip">🚀 Incentivos de ventas</span>
+      <span class="uso-chip">🎁 Regalos corporativos</span>
+    </div>
+  </div>
+    <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">6</div>
+      <div class="hero-stat-label">Marcas</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">41</div>
+      <div class="hero-stat-label">Tipos de vale</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">S/7</div>
+      <div class="hero-stat-label">Precio desde</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">Nacional</div>
+      <div class="hero-stat-label">Cobertura</div>
+    </div>
+  </div>
+</section>
+
+<div class="brands-wrapper">
+
+  <!-- BEMBOS -->
+  <div class="brand-section bs-bembos" id="bembos">
+    <div class="brand-header bh-bembos">
+      <div class="brand-accent-bar" style="background:var(--bembos)"></div>
+      <div class="brand-info">
+        <div class="brand-name">Bembos</div>
+        <div class="brand-category">🍔 Hamburguesas · Combos personales y dobles</div>
+      </div>
+      <div class="brand-range">S/9.90 — S/29.90</div>
+    </div>
+    <div class="vales-grid">
+      <div class="vale-card">
+        <div class="vale-num vn-bembos">Vale corporativo 16</div>
+        <div class="vale-desc">Combo Clásica Regular 1</div>
+        <div class="vale-detail">Clásica reg. + Papa reg.</div>
+        <div class="vale-price" style="color:var(--bembos)">S/9.90</div>
+        <div class="vale-regular">Normal S/19.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-bembos">Vale corporativo 25</div>
+        <div class="vale-desc">Combo Clásica Regular + Gaseosa</div>
+        <div class="vale-detail">Clásica reg. + Papa reg. + Gaseosa reg.</div>
+        <div class="vale-price" style="color:var(--bembos)">S/11.90</div>
+        <div class="vale-regular">Normal S/25.70</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-bembos">Vale corporativo 27</div>
+        <div class="vale-desc">Combo Nuggets 1</div>
+        <div class="vale-detail">Nuggets x6 + Papa reg. + Gaseosa reg.</div>
+        <div class="vale-price" style="color:var(--bembos)">S/12.90</div>
+        <div class="vale-regular">Normal S/23.70</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-bembos">Vale corporativo 18</div>
+        <div class="vale-desc">Combo A lo Pobre</div>
+        <div class="vale-detail">A lo pobre reg. + Papa reg. + Gaseosa reg.</div>
+        <div class="vale-price" style="color:var(--bembos)">S/13.90</div>
+        <div class="vale-regular">Normal S/28.70</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-bembos">Vale corporativo 19</div>
+        <div class="vale-desc">Combo Clásica Mediana</div>
+        <div class="vale-detail">Clásica med. + Papa med. + Gaseosa med.</div>
+        <div class="vale-price" style="color:var(--bembos)">S/16.90</div>
+        <div class="vale-regular">Normal S/30.70</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-bembos">Vale corporativo 20</div>
+        <div class="vale-desc">Combo Cheese + Clásica</div>
+        <div class="vale-detail">Cheese reg. + Clásica reg. + Papa gde. + 2 Gaseosas reg.</div>
+        <div class="vale-price" style="color:var(--bembos)">S/26.90</div>
+        <div class="vale-regular">Normal S/49.50</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-bembos">Vale corporativo 26</div>
+        <div class="vale-desc">Combo A lo Pobre + Cheese</div>
+        <div class="vale-detail">A lo pobre reg. + Cheese reg. + 2 Papas reg. + 2 Gaseosas reg.</div>
+        <div class="vale-price" style="color:var(--bembos)">S/29.90</div>
+        <div class="vale-regular">Normal S/57.40</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CHINA WOK -->
+  <div class="brand-section bs-chinawok" id="chinawok">
+    <div class="brand-header bh-chinawok">
+      <div class="brand-accent-bar" style="background:var(--chinawok)"></div>
+      <div class="brand-info">
+        <div class="brand-name">China Wok</div>
+        <div class="brand-category">🥢 Comida china · Combos y dúos</div>
+      </div>
+      <div class="brand-range">S/9.90 — S/26.90</div>
+    </div>
+    <div class="vales-grid">
+      <div class="vale-card">
+        <div class="vale-num vn-chinawok">Vale corporativo 7</div>
+        <div class="vale-desc">Chaufa Personal</div>
+        <div class="vale-detail">Arroz Chaufa de Pollo personal + 1 Vaso de Gaseosa Junior</div>
+        <div class="vale-price" style="color:var(--chinawok)">S/9.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-chinawok">Vale corporativo 8</div>
+        <div class="vale-desc">Encájate a Elección</div>
+        <div class="vale-detail">Encájate a elección + 1 Vaso de Gaseosa Junior</div>
+        <div class="vale-price" style="color:var(--chinawok)">S/11.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-chinawok">Vale corporativo 9</div>
+        <div class="vale-desc">Mostrazo Chicharrón</div>
+        <div class="vale-detail">Mostrazo Chicharrón + 1 Vaso de Gaseosa Junior</div>
+        <div class="vale-price" style="color:var(--chinawok)">S/15.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-chinawok">Vale corporativo 10</div>
+        <div class="vale-desc">Chi Jau Kay a lo Pobre</div>
+        <div class="vale-detail">Chi Jau Kay a lo Pobre + 1 Vaso de Gaseosa Junior</div>
+        <div class="vale-price" style="color:var(--chinawok)">S/17.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-chinawok">Vale corporativo 11</div>
+        <div class="vale-desc">Dúo Encájate</div>
+        <div class="vale-detail">2 Encájate a elección + 2 Wantanes</div>
+        <div class="vale-price" style="color:var(--chinawok)">S/23.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-chinawok">Vale corporativo 12</div>
+        <div class="vale-desc">Dúo Clásicos</div>
+        <div class="vale-detail">Arroz Chaufa de Pollo personal + Combinado Taypá + 2 Tequeños de lomo + 2 Vasos de Gaseosa Junior</div>
+        <div class="vale-price" style="color:var(--chinawok)">S/26.90</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAPA JOHN'S -->
+  <div class="brand-section bs-papajohns" id="papajohns">
+    <div class="brand-header bh-papajohns">
+      <div class="brand-accent-bar" style="background:var(--papajohns)"></div>
+      <div class="brand-info">
+        <div class="brand-name">Papa John's</div>
+        <div class="brand-category">🍕 Pizzas clásicas y especialidad · Personal a familiar</div>
+      </div>
+      <div class="brand-range">S/7 — S/43.90</div>
+    </div>
+    <div class="vales-grid">
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 1</div>
+        <div class="vale-desc">Pizza Personal Clásica</div>
+        <div class="vale-detail">Americana, Pepperoni o Mozzarella</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/7.00</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 2</div>
+        <div class="vale-desc">Mini Cheestick + Gaseosa</div>
+        <div class="vale-detail">Mini Cheestick + 1 Vaso de Gaseosa 12oz</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/10.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 3</div>
+        <div class="vale-desc">Pizza Personal + Gaseosa</div>
+        <div class="vale-detail">Pizza Personal (Americana, Pepperoni o Mozzarella) + 1 Vaso de Gaseosa 12oz</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/12.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 4</div>
+        <div class="vale-desc">1 Pizza Mediana + Gaseosa</div>
+        <div class="vale-detail">Pizza Mediana (Clásicas o Hawaina) + 1 Vaso de Gaseosa 12oz</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/15.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 5</div>
+        <div class="vale-desc">2 Pizzas Personales + Gaseosas</div>
+        <div class="vale-detail">2 Pizzas Personales + 2 Vasos de Gaseosa 12oz</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/19.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 6</div>
+        <div class="vale-desc">1 Pizza Grande</div>
+        <div class="vale-detail">Clásica o Especialidad — más de 7 sabores a elección</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/22.00</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 8</div>
+        <div class="vale-desc">1 Pizza Familiar</div>
+        <div class="vale-detail">Clásica o Especialidad — más de 7 sabores a elección</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/32.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-papajohns">Vale corporativo 7</div>
+        <div class="vale-desc">2 Pizzas Grandes Clásicas</div>
+        <div class="vale-detail">2 Pizzas Grandes Clásicas a elección</div>
+        <div class="vale-price" style="color:var(--papajohns)">S/43.90</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DON BELISARIO -->
+  <div class="brand-section bs-donbelisario" id="donbelisario">
+    <div class="brand-header bh-donbelisario">
+      <div class="brand-accent-bar" style="background:var(--donbelisario)"></div>
+      <div class="brand-info">
+        <div class="brand-name">Don Belisario</div>
+        <div class="brand-category">🍗 Pollo a la brasa · Personal, para dos y familiar</div>
+      </div>
+      <div class="brand-range">S/17.90 — S/69.90</div>
+    </div>
+    <div class="vales-grid">
+      <div class="vale-card">
+        <div class="vale-num vn-donbelisario">Vale corporativo VC07</div>
+        <div class="vale-desc">Beliclásico Personal</div>
+        <div class="vale-detail">Porción personal de pollo + acompañamientos personales</div>
+        <div class="vale-price" style="color:var(--donbelisario)">S/17.90</div>
+        <div class="vale-regular">Normal S/25.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-donbelisario">Vale corporativo VC08</div>
+        <div class="vale-desc">Belicombo Personal</div>
+        <div class="vale-detail">Porción personal de pollo + bebida + acompañamientos personales</div>
+        <div class="vale-price" style="color:var(--donbelisario)">S/19.90</div>
+        <div class="vale-regular">Normal S/28.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-donbelisario">Vale corporativo VC09</div>
+        <div class="vale-desc">Beliclásico para Dos</div>
+        <div class="vale-detail">Medio pollo + acompañamientos personales</div>
+        <div class="vale-price" style="color:var(--donbelisario)">S/35.90</div>
+        <div class="vale-regular">Normal S/52.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-donbelisario">Vale corporativo VC10</div>
+        <div class="vale-desc">Belicombo para Dos</div>
+        <div class="vale-detail">Medio pollo + bebidas + acompañamientos personales</div>
+        <div class="vale-price" style="color:var(--donbelisario)">S/39.90</div>
+        <div class="vale-regular">Normal S/61.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-donbelisario">Vale corporativo VC11</div>
+        <div class="vale-desc">Beliclásico Familiar</div>
+        <div class="vale-detail">Pollo entero + acompañamientos familiares</div>
+        <div class="vale-price" style="color:var(--donbelisario)">S/59.90</div>
+        <div class="vale-regular">Normal S/85.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-donbelisario">Vale corporativo VC12</div>
+        <div class="vale-desc">Belicombo Familiar</div>
+        <div class="vale-detail">Pollo entero + bebidas + acompañamientos personales o no elegibles</div>
+        <div class="vale-price" style="color:var(--donbelisario)">S/69.90</div>
+        <div class="vale-regular">Normal S/99.90</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPEYES -->
+  <div class="brand-section bs-popeyes" id="popeyes">
+    <div class="brand-header bh-popeyes">
+      <div class="brand-accent-bar" style="background:var(--popeyes)"></div>
+      <div class="brand-info">
+        <div class="brand-name">Popeyes</div>
+        <div class="brand-category">🍗 Pollo frito · Piezas, combos y sándwiches</div>
+      </div>
+      <div class="brand-range">S/12.90 — S/37.90</div>
+    </div>
+    <div class="vales-grid">
+      <div class="vale-card">
+        <div class="vale-num vn-popeyes">Vale corporativo #10</div>
+        <div class="vale-desc">1 Pieza de pollo</div>
+        <div class="vale-detail">1 Pieza de pollo + 2 nuggets + 1 papa regular + 1 gaseosa Jr.</div>
+        <div class="vale-price" style="color:#c05c00">S/12.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-popeyes">Vale corporativo #02</div>
+        <div class="vale-desc">2 Piezas de pollo</div>
+        <div class="vale-detail">2 Piezas de pollo + 1 papa regular + 1 gaseosa Jr.</div>
+        <div class="vale-price" style="color:#c05c00">S/14.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-popeyes">Vale corporativo #12</div>
+        <div class="vale-desc">Sándwich Mayo</div>
+        <div class="vale-detail">1 Sándwich Mayo + 1 papa regular + 1 gaseosa Jr.</div>
+        <div class="vale-price" style="color:#c05c00">S/18.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-popeyes">Vale corporativo #13</div>
+        <div class="vale-desc">Tosty + Sándwich Mayo</div>
+        <div class="vale-detail">1 Tosty tradicional + 1 Sándwich Mayo + 2 papas regular</div>
+        <div class="vale-price" style="color:#c05c00">S/27.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-popeyes">Vale corporativo #115</div>
+        <div class="vale-desc">4 Piezas de pollo</div>
+        <div class="vale-detail">4 Piezas de pollo + 2 papas regular + 2 gaseosas Jr.</div>
+        <div class="vale-price" style="color:#c05c00">S/27.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-popeyes">Vale corporativo #06</div>
+        <div class="vale-desc">6 Piezas de pollo</div>
+        <div class="vale-detail">6 Piezas de pollo + 3 papas regular</div>
+        <div class="vale-price" style="color:#c05c00">S/37.90</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DUNKIN' -->
+  <div class="brand-section bs-dunkin" id="dunkin">
+    <div class="brand-header bh-dunkin">
+      <div class="brand-accent-bar" style="background:var(--dunkin)"></div>
+      <div class="brand-info">
+        <div class="brand-name">Dunkin'</div>
+        <div class="brand-category">🍩 Donuts & café · Clásicas, premium y por docena</div>
+      </div>
+      <div class="brand-range">S/8.50 — S/36.90</div>
+    </div>
+    <div class="vales-grid">
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #51</div>
+        <div class="vale-desc">2 Donuts Clásicas</div>
+        <div class="vale-detail">2 Donuts Clásicas a elección</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/8.50</div>
+        <div class="vale-regular">Normal S/11.00</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #52</div>
+        <div class="vale-desc">1 Donut Clásica + Café 12oz</div>
+        <div class="vale-detail">1 Donut Clásica + 1 Café o Latte 12oz</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/10.90</div>
+        <div class="vale-regular">Normal S/13.40</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #58</div>
+        <div class="vale-desc">1 Donut Clásica + Iced Latte 12oz</div>
+        <div class="vale-detail">1 Donut Clásica + 1 Iced Latte 12oz</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/10.90</div>
+        <div class="vale-regular">Normal S/16.40</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #53</div>
+        <div class="vale-desc">1 Donut Clásica + Café 16oz</div>
+        <div class="vale-detail">1 Donut Clásica + 1 Café o Latte 16oz</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/12.90</div>
+        <div class="vale-regular">Normal S/15.40</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #54</div>
+        <div class="vale-desc">3 Donuts + Café 12oz</div>
+        <div class="vale-detail">3 Donuts Clásicas + 1 Café o Latte 12oz</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/18.90</div>
+        <div class="vale-regular">Normal S/24.40</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #55</div>
+        <div class="vale-desc">½ Docena Donuts Clásicas</div>
+        <div class="vale-detail">6 Donuts Clásicas a elección</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/23.90</div>
+        <div class="vale-regular">Normal S/27.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #57</div>
+        <div class="vale-desc">½ Docena Donuts Premium</div>
+        <div class="vale-detail">6 Donuts Premium a elección</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/29.90</div>
+        <div class="vale-regular">Normal S/33.90</div>
+      </div>
+      <div class="vale-card">
+        <div class="vale-num vn-dunkin">Vale corporativo #56</div>
+        <div class="vale-desc">Docena Donuts Clásicas</div>
+        <div class="vale-detail">12 Donuts Clásicas a elección</div>
+        <div class="vale-price" style="color:var(--dunkin)">S/36.90</div>
+        <div class="vale-regular">Normal S/41.90</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- PROCESO -->
+<section class="process-section">
+  <div class="section-header">
+    <p class="section-eyebrow">¿Cómo funciona?</p>
+    <h2 class="section-title">De la solicitud a tus manos en 3 días</h2>
+  </div>
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-n">Paso 01</div>
+      <div class="step-title">Elige tus vales</div>
+      <div class="step-desc">Selecciona marca, tipo de vale y cantidad. Pedido mínimo de 20 unidades por tipo de vale.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">Paso 02</div>
+      <div class="step-title">Genera tu cotización</div>
+      <div class="step-desc">Ingresa al <a href="https://dipjov-6bozry-wizrus.github.io/Cotizaci-n-Vales-Corporativos/" target="_blank" style="color:inherit;font-weight:700;text-decoration:underline;">cotizador</a>, completa tus datos y el detalle de vales. Envíanos la solicitud generada por correo electrónico.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">Paso 03</div>
+      <div class="step-title">Realiza el pago</div>
+      <div class="step-desc">Transfiere el monto y envíanos tu solicitud del cotizador + el comprobante de depósito.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-n">Paso 04</div>
+      <div class="step-title">Recibe los vales</div>
+      <div class="step-desc">En 3 días hábiles recibes los vales digitales por correo electrónico, listos para distribuir a tu equipo.</div>
+    </div>
+  </div>
+</section>
+
+<!-- INFO STRIP -->
+<div class="info-strip">
+  <div class="info-inner">
+    <div>
+      <div class="info-label">Vigencia</div>
+      <div class="info-val">4 meses desde la emisión. Sin posibilidad de reimpresión.</div>
+    </div>
+    <div>
+      <div class="info-label">Cobertura</div>
+      <div class="info-val">Salón y para llevar a nivel nacional en tiendas participantes.</div>
+    </div>
+    <div>
+      <div class="info-label">Condiciones</div>
+      <div class="info-val">No válido para delivery. Solo para salón y para llevar.</div>
+    </div>
+    <div>
+      <div class="info-label">Entrega</div>
+      <div class="info-val">3 días hábiles tras confirmar depósito. Vales al portador, sin reposición por pérdida.</div>
+    </div>
+  </div>
+</div>
+
+<!-- CTA -->
+<section class="cta-section" id="contacto">
+  <div class="cta-box">
+    <h2>¿Listo para cotizar?</h2>
+    <p>Ingresa al cotizador, selecciona tus vales y envíanos la solicitud junto con tu comprobante de pago. En 3 días hábiles tienes tus vales digitales.</p>
+    <div class="cta-buttons">
+      <a href="https://dipjov-6bozry-wizrus.github.io/Cotizaci-n-Vales-Corporativos/" target="_blank" class="btn-primary">Ir al cotizador</a>
+      <a href="https://wa.me/51928043352?text=Hola,%20quisiera%20información%20sobre%20vales%20corporativos%20NGR" class="btn-secondary" target="_blank">Escribir por WhatsApp</a>
+    </div>
+  </div>
+</section>
+
+<div class="footer-wrap">
+  <footer>
+    <p>NGR — Vales Corporativos 2026 · Mínimo 20 unidades por tipo · Imágenes referenciales</p>
+    <p>Atención: Lunes a viernes 9am–6pm · WhatsApp: <a href="https://wa.me/51928043352" style="color:inherit">+51 928 043 352</a></p>
+  </footer>
+</div>
+
+</body>
+</html>
